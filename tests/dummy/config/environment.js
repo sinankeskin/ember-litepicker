@@ -47,5 +47,14 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  ENV['ember-litepicker'] = {
+    lang: 'tr-TR',
+    format: 'DD.MM.YYYY',
+    tooltipText: {
+      one: 'gün',
+      other: 'gün'
+    }
+  };
+
   return ENV;
 };
