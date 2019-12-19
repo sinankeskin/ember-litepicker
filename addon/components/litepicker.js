@@ -219,6 +219,11 @@ export default TextField.extend({
    */
 
   /**
+  * @argument mobileFriendly
+  * @type Boolean
+  */
+
+  /**
    * @argument lockDaysFormat
    * @type String
    */
@@ -245,12 +250,12 @@ export default TextField.extend({
 
   /**
    * @argument buttonText
-   * @type String
+   * @type Object
    */
 
   /**
    * @argument tooltipText
-   * @type String
+   * @type Object
    */
 
   /**
@@ -311,6 +316,7 @@ export default TextField.extend({
       'hotelMode',
       'disableWeekends',
       'scrollToDate',
+      'mobileFriendly',
       'lockDaysFormat',
       'lockDays',
       'disallowLockDaysInRange',
@@ -339,33 +345,6 @@ export default TextField.extend({
 
   _setupLitepicker() {
     this.set('picker', new Litepicker(this.get('_options')));
-    this._setLitepickerDate();
-  },
-
-  _setLitepickerDate() {
-    const singleMode = this.get('singleMode');
-
-    if (isPresent(singleMode)) {
-      if (singleMode) {
-        const value = this.get('value');
-
-        if (isPresent(value)) {
-          this.get('picker').setDate(value);
-        }
-      } else {
-        const startDate = this.get('startDate');
-
-        if (isPresent(startDate)) {
-          const endDate = this.get('endDate');
-
-          if (isPresent(endDate)) {
-            this.get('picker').setDateRange(startDate, endDate);
-          } else {
-            this.get('picker').setDateRange(startDate, null);
-          }
-        }
-      }
-    }
   },
 
   _updateOptions() {
