@@ -10,9 +10,9 @@
     "datetime picker",
     "daterange picker"
   ],
-  "repository": "",
+  "repository": "https://github.com/sinankeskin/ember-litepicker",
   "license": "MIT",
-  "author": "",
+  "author": "Sinan Keskin <sinan@kesk.in> (https://kesk.in)",
   "directories": {
     "doc": "doc",
     "test": "tests"
