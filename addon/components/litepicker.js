@@ -1,9 +1,9 @@
 /* globals Litepicker */
-import TextField from '@ember/component/text-field';
 import { getOwner } from '@ember/application';
 import { assign } from '@ember/polyfills';
-import { computed } from '@ember/object';
+import { action, computed, get } from '@ember/object';
 import { isPresent } from '@ember/utils';
+import Component from '@glimmer/component';
 
 /**
  * Litepicker component
@@ -22,61 +22,22 @@ import { isPresent } from '@ember/utils';
  * @class Litepicker
  * @public
  */
-export default TextField.extend({
-  classNames: ['ember-litepicker-input'],
-  /**
-   * ARIA bindings for a textbox.
-   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/textbox_role
-   * @see https://labs.levelaccess.com/index.php/Category:ARIA
-   * @argument attributeBindings
-   */
-  attributeBindings: [
-    'aria-activedescendent',
-    'aria-autocomplete',
-    'aria-describedby',
-    'aria-labelledby',
-    'aria-multiline',
-    'aria-placeholder',
-    'aria-readonly',
-    'aria-required'
-  ],
+export default class LitepickerComponent extends Component {
+  @computed
+  get _config() {
+    const config = getOwner(this).resolveRegistration('config:environment') || {};
 
-  _config: computed({
-    get() {
-      const config =
-        getOwner(this).resolveRegistration('config:environment') || {};
+    return config['ember-litepicker'] || {};
+  }
 
-      return config['ember-litepicker'] || {};
-    }
-  }),
+  @computed('_config')
+  get _options() {
+    const options = this._defaultOptions();
 
-  _options: computed('_config', 'attrs', {
-    get() {
-      const options = this._defaultOptions();
+    assign(options, this._config, this._componentOptions());
 
-      assign(options, this._config, this._componentOptions());
-
-      return options;
-    }
-  }),
-
-  didInsertElement() {
-    this._super(...arguments);
-
-    this._setupLitepicker();
-  },
-
-  didUpdateAttrs() {
-    this._super(...arguments);
-
-    this._updateOptions();
-  },
-
-  willDestroyElement() {
-    this._super(...arguments);
-
-    this.get('picker').destroy();
-  },
+    return options;
+  }
 
   /**
    * @argument element
@@ -86,7 +47,7 @@ export default TextField.extend({
     return {
       element: this.element
     };
-  },
+  }
 
   /**
    * @argument elementEnd
@@ -219,9 +180,9 @@ export default TextField.extend({
    */
 
   /**
-  * @argument mobileFriendly
-  * @type Boolean
-  */
+   * @argument mobileFriendly
+   * @type Boolean
+   */
 
   /**
    * @argument lockDaysFormat
@@ -320,8 +281,13 @@ export default TextField.extend({
       'lockDaysFormat',
       'lockDays',
       'disallowLockDaysInRange',
+      'lockDaysInclusivity',
       'bookedDaysFormat',
       'bookedDays',
+      'disallowBookedDaysInRange',
+      'bookedDaysInclusivity',
+      'anyBookedDaysAsCheckout',
+      'dropdowns',
       'buttonText',
       'tooltipText',
       'onShow',
@@ -335,19 +301,27 @@ export default TextField.extend({
     const options = {};
 
     defaults.forEach(option => {
-      if (isPresent(this.get(option))) {
-        options[option] = this.get(option);
+      if (isPresent(get(this.args, option))) {
+        options[option] = get(this.args, option);
       }
     });
 
     return options;
-  },
-
-  _setupLitepicker() {
-    this.set('picker', new Litepicker(this.get('_options')));
-  },
-
-  _updateOptions() {
-    this.get('picker').setOptions(this.get('_options'));
   }
-});
+
+  @action
+  _initializeOptions(element) {
+    this.element = element;
+    this.picker = new Litepicker(this._options);
+  }
+
+  @action
+  _updateOptions() {
+    this.picker.setOptions(this._options);
+  }
+
+  @action
+  _destroyOptions() {
+    this.picker.destroy();
+  }
+}
