@@ -92,6 +92,7 @@ ENV["ember-litepicker"] = {
   onHide: null,
   onSelect: null,
   onError: null,
+  onRender: null,
   onChangeMonth: null,
   onChangeYear: null,
 };
