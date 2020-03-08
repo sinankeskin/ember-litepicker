@@ -294,6 +294,7 @@ export default class LitepickerComponent extends Component {
       'onHide',
       'onSelect',
       'onError',
+      'onRender',
       'onChangeMonth',
       'onChangeYear'
     ];
