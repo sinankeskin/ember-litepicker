@@ -185,6 +185,11 @@ export default class LitepickerComponent extends Component {
    */
 
   /**
+   * @argument useResetBtn
+   * @type Boolean
+   */
+
+  /**
    * @argument lockDaysFormat
    * @type String
    */
@@ -249,6 +254,11 @@ export default class LitepickerComponent extends Component {
    * @type Function
    */
 
+  /**
+   * @argument resetBtnCallback
+   * @type Function
+   */
+
   _componentOptions() {
     const defaults = [
       'elementEnd',
@@ -278,6 +288,7 @@ export default class LitepickerComponent extends Component {
       'disableWeekends',
       'scrollToDate',
       'mobileFriendly',
+      'useResetBtn',
       'lockDaysFormat',
       'lockDays',
       'disallowLockDaysInRange',
@@ -296,7 +307,8 @@ export default class LitepickerComponent extends Component {
       'onError',
       'onRender',
       'onChangeMonth',
-      'onChangeYear'
+      'onChangeYear',
+      'resetBtnCallback'
     ];
 
     const options = {};
