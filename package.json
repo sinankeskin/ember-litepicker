@@ -31,7 +31,7 @@
   "dependencies": {
     "@ember/render-modifiers": "^1.0.2",
     "ember-cli-babel": "^7.18.0",
-    "ember-cli-htmlbars": "^4.2.3",
+    "ember-cli-htmlbars": "^4.3.0",
     "litepicker": "^1.1.0"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "ember-resolver": "^7.0.0",
     "ember-source": "^3.17.1",
     "ember-source-channel-url": "^2.0.1",
-    "ember-template-lint": "^2.4.0",
+    "ember-template-lint": "^2.5.0",
     "ember-try": "^1.4.0",
     "eslint": "^6.8.0",
     "eslint-plugin-ember": "^8.1.1",
