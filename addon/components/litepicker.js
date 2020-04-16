@@ -259,6 +259,11 @@ export default class LitepickerComponent extends Component {
    * @type Function
    */
 
+  /**
+   * @argument onDayHover
+   * @type Function
+   */
+
   _componentOptions() {
     const defaults = [
       'elementEnd',
@@ -308,7 +313,8 @@ export default class LitepickerComponent extends Component {
       'onRender',
       'onChangeMonth',
       'onChangeYear',
-      'resetBtnCallback'
+      'resetBtnCallback',
+      'onDayHover'
     ];
 
     const options = {};
