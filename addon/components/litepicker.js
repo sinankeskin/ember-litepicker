@@ -303,6 +303,8 @@ export default class LitepickerComponent extends Component {
       'disallowBookedDaysInRange',
       'bookedDaysInclusivity',
       'anyBookedDaysAsCheckout',
+      'highlightedDaysFormat',
+      'highlightedDays',
       'dropdowns',
       'buttonText',
       'tooltipText',
