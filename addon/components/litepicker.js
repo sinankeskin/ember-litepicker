@@ -2,7 +2,6 @@
 import { getOwner } from '@ember/application';
 import { assign } from '@ember/polyfills';
 import { action, computed, get } from '@ember/object';
-import { isPresent } from '@ember/utils';
 import Component from '@glimmer/component';
 
 /**
@@ -265,65 +264,15 @@ export default class LitepickerComponent extends Component {
    */
 
   _componentOptions() {
-    const defaults = [
-      'elementEnd',
-      'parentEl',
-      'firstDay',
-      'format',
-      'lang',
-      'numberOfMonths',
-      'numberOfColumns',
-      'startDate',
-      'endDate',
-      'zIndex',
-      'minDate',
-      'maxDate',
-      'minDays',
-      'maxDays',
-      'selectForward',
-      'selectBackward',
-      'splitView',
-      'inlineMode',
-      'singleMode',
-      'autoApply',
-      'allowRepick',
-      'showWeekNumbers',
-      'showTooltip',
-      'hotelMode',
-      'disableWeekends',
-      'scrollToDate',
-      'mobileFriendly',
-      'useResetBtn',
-      'lockDaysFormat',
-      'lockDays',
-      'disallowLockDaysInRange',
-      'lockDaysInclusivity',
-      'bookedDaysFormat',
-      'bookedDays',
-      'disallowBookedDaysInRange',
-      'bookedDaysInclusivity',
-      'anyBookedDaysAsCheckout',
-      'highlightedDaysFormat',
-      'highlightedDays',
-      'dropdowns',
-      'buttonText',
-      'tooltipText',
-      'onShow',
-      'onHide',
-      'onSelect',
-      'onError',
-      'onRender',
-      'onChangeMonth',
-      'onChangeYear',
-      'resetBtnCallback',
-      'onDayHover'
-    ];
-
     const options = {};
 
-    defaults.forEach(option => {
-      if (isPresent(get(this.args, option))) {
-        options[option] = get(this.args, option);
+    Object.keys(this.args).forEach((option) => {
+      const _option = get(this.args, option);
+
+      if (typeof _option === 'object') {
+        options[option] = Object.assign({}, _option);
+      } else {
+        options[option] = _option;
       }
     });
 
