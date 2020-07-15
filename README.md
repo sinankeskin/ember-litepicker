@@ -98,10 +98,16 @@ ENV["ember-litepicker"] = {
 };
 
 ```
-Example
+Example as a component
 
 ``` handlebars
 <Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off" />
+```
+
+Example as a modifer
+
+``` handlebars
+<Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
 ```
 
 Contributing
