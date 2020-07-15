@@ -3,5 +3,8 @@
 </div>
 <div>&nbsp;</div>
 <div>
-  Litepicker as a modifier <Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
+  Litepicker as a modifier
+  <Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off" registerAPI=this.registerAPI}}/>
+  &nbsp;
+  <button {{on 'click' this.show}}>Open</button>
 </div>

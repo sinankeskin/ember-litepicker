@@ -110,6 +110,25 @@ Example as a modifer
 <Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
 ```
 
+If you would like access to the litepicker instance in order to call some methods directly, for example to hide or show 
+programmatically, pass an action to registerAPI
+```handlebars
+<Input {{litepicker registerApi=this.saveApi startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
+```
+```javascript
+// save the litepicker instance to use later
+@action
+saveApi(litepicker) {
+    this.litepicker = litepicker;
+}
+
+// programmatically open the datepicker 
+@action
+openDatePicker() {
+    this.litepicker.show();
+}
+```
+
 Contributing
 ------------------------------------------------------------------------------
 
