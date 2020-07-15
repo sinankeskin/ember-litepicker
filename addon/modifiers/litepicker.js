@@ -278,6 +278,11 @@ export default class LitepickerModifier extends Modifier {
 
   didInstall() {
     this.picker = new Litepicker(this._options);
+
+    let args = this.getArgs();
+    if (args.registerAPI) {
+      args.registerAPI(this.picker);
+    }
   }
 
   willRemove() {
