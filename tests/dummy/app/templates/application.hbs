@@ -1,10 +1,20 @@
 <div>
-  Litepicker as a component <Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off" />
+  Litepicker as a component
+  <Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off" />
 </div>
-<div>&nbsp;</div>
+<div></div>
 <div>
   Litepicker as a modifier
-  <Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off" registerAPI=this.registerAPI}}/>
-  &nbsp;
-  <button {{on 'click' this.show}}>Open</button>
+  <Input
+    {{litepicker
+      singleMode=false
+      startDate='23.12.2019'
+      endDate='28.12.2019'
+      autocomplete='off'
+      registerAPI=this.registerAPI
+    }}
+  />
+  <button type="button" {{on 'click' this.show}}>
+    Open
+  </button>
 </div>
