@@ -15,4 +15,16 @@ export default class ApplicationController extends Controller {
   show() {
     this.litepicker.show();
   }
+
+  @tracked
+  startDate = new Date(2019, 11, 23); // month is 0 based
+
+  @tracked
+  endDate = new Date(2019, 11, 28);
+
+  @action
+  onDateChanged(startDate, endDate) {
+    this.startDate = startDate;
+    this.endDate = endDate;
+  }
 }

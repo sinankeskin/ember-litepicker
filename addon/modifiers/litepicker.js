@@ -1,7 +1,6 @@
 /* globals Litepicker */
 import { getOwner } from '@ember/application';
-import { assign } from '@ember/polyfills';
-import { computed, get } from '@ember/object';
+import { computed } from '@ember/object';
 import Modifier from 'ember-modifier';
 
 export default class LitepickerModifier extends Modifier {
@@ -17,11 +16,11 @@ export default class LitepickerModifier extends Modifier {
     return config['ember-litepicker'] || {};
   }
 
-  @computed('_config')
+  @computed('_config', 'args')
   get _options() {
     const options = this._defaultOptions();
 
-    assign(options, this._config, this._componentOptions());
+    Object.assign(options, this._config, this.getArgs());
 
     return options;
   }
@@ -254,22 +253,6 @@ export default class LitepickerModifier extends Modifier {
   getArgs() {
     // this is done to allow the component version to use the modifier
     return Object.keys(this.args.named).length ? this.args.named : this.args.positional[0] || {};
-  }
-
-  _componentOptions() {
-    const options = {};
-    let args = this.getArgs();
-    Object.keys(args).forEach((option) => {
-      const _option = get(args, option);
-
-      if (typeof _option === 'object') {
-        options[option] = Object.assign({}, _option);
-      } else {
-        options[option] = _option;
-      }
-    });
-
-    return options;
   }
 
   didUpdateArguments() {
