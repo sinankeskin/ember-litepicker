@@ -1,6 +1,6 @@
 {
   "name": "ember-litepicker",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Ember addon for Litepicker date range picker library.",
   "keywords": [
     "ember-addon",
