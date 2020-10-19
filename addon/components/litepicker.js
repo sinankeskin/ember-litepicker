@@ -1,4 +1,3 @@
-
 import Component from '@glimmer/component';
 
 /**
@@ -18,5 +17,4 @@ import Component from '@glimmer/component';
  * @class Litepicker
  * @public
  */
-export default class LitepickerComponent extends Component {
-}
+export default class LitepickerComponent extends Component {}
