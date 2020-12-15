@@ -16,7 +16,6 @@ export default class LitepickerModifier extends Modifier {
     return config['ember-litepicker'] || {};
   }
 
-  @cached
   get _options() {
     const options = this._defaultOptions();
 
