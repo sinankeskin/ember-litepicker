@@ -1,4 +1,5 @@
-import templateOnly from '@ember/component/template-only';
+/* eslint-disable ember/no-empty-glimmer-component-classes */
+import Component from '@glimmer/component';
 
 /**
  * Litepicker component
@@ -17,4 +18,4 @@ import templateOnly from '@ember/component/template-only';
  * @class Litepicker
  * @public
  */
-export default templateOnly();
+export default class LitepickerComponent extends Component {}
