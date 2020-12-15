@@ -19,7 +19,7 @@ export default class LitepickerModifier extends Modifier {
   get _options() {
     const options = this._defaultOptions();
 
-    Object.assign(options, this._config, this.getArgs());
+    Object.assign(options, this._config, this.modifierOptions);
 
     return options;
   }
@@ -249,7 +249,8 @@ export default class LitepickerModifier extends Modifier {
    * @type Function
    */
 
-  getArgs() {
+  @cached
+  get modifierOptions() {
     // this is done to allow the component version to use the modifier
     return Object.keys(this.args.named).length ? this.args.named : this.args.positional[0] || {};
   }
@@ -261,9 +262,8 @@ export default class LitepickerModifier extends Modifier {
   didInstall() {
     this.picker = new Litepicker(this._options);
 
-    let args = this.getArgs();
-    if (args.registerAPI) {
-      args.registerAPI(this.picker);
+    if (this.modifierOptions['registerAPI']) {
+      this.modifierOptions.registerAPI(this.picker);
     }
   }
 
