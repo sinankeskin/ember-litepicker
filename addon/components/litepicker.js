@@ -1,4 +1,4 @@
-import Component from '@glimmer/component';
+import templateOnly from '@ember/component/template-only';
 
 /**
  * Litepicker component
@@ -17,4 +17,4 @@ import Component from '@glimmer/component';
  * @class Litepicker
  * @public
  */
-export default class LitepickerComponent extends Component {}
+export default templateOnly();

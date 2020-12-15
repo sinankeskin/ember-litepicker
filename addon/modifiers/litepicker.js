@@ -1,7 +1,6 @@
 /* globals Litepicker */
-import { getOwner } from '@ember/application';
-import { computed } from '@ember/object';
 import Modifier from 'ember-modifier';
+import { getOwner } from '@ember/application';
 
 export default class LitepickerModifier extends Modifier {
   /**
@@ -9,14 +8,12 @@ export default class LitepickerModifier extends Modifier {
    */
   picker;
 
-  @computed
   get _config() {
     const config = getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-litepicker'] || {};
   }
 
-  @computed('_config', 'args')
   get _options() {
     const options = this._defaultOptions();
 
@@ -31,7 +28,7 @@ export default class LitepickerModifier extends Modifier {
    */
   _defaultOptions() {
     return {
-      element: this.element
+      element: this.element,
     };
   }
 
