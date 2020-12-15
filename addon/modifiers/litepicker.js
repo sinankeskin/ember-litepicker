@@ -1,5 +1,6 @@
 /* globals Litepicker */
 import Modifier from 'ember-modifier';
+import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 
 export default class LitepickerModifier extends Modifier {
@@ -8,12 +9,14 @@ export default class LitepickerModifier extends Modifier {
    */
   picker;
 
+  @cached
   get _config() {
     const config = getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-litepicker'] || {};
   }
 
+  @cached
   get _options() {
     const options = this._defaultOptions();
 
