@@ -11,7 +11,8 @@ export default class LitepickerModifier extends Modifier {
 
   @cached
   get _config() {
-    const config = getOwner(this).resolveRegistration('config:environment') || {};
+    const config =
+      getOwner(this).resolveRegistration('config:environment') || {};
 
     return config['ember-litepicker'] || {};
   }
@@ -251,7 +252,9 @@ export default class LitepickerModifier extends Modifier {
 
   getArgs() {
     // this is done to allow the component version to use the modifier
-    return Object.keys(this.args.named).length ? this.args.named : this.args.positional[0] || {};
+    return Object.keys(this.args.named).length
+      ? this.args.named
+      : this.args.positional[0] || {};
   }
 
   didUpdateArguments() {

@@ -52,8 +52,8 @@ module.exports = function (environment) {
     format: 'DD.MM.YYYY',
     tooltipText: {
       one: 'gün',
-      other: 'gün'
-    }
+      other: 'gün',
+    },
   };
 
   return ENV;
