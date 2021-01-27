@@ -1,4 +1,3 @@
-/* globals Litepicker */
 import Modifier from 'ember-modifier';
 import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
@@ -262,9 +261,33 @@ export default class LitepickerModifier extends Modifier {
   }
 
   didInstall() {
-    this.picker = new Litepicker(this._options);
+    import('litepicker').then((litepicker) => {
+      const Litepicker = litepicker.default;
+
+      const importedModules = [];
+      const modules = this._config['modules'];
+
+      if (modules) {
+        modules.forEach((module) => {
+          if (module === 'ranges') {
+            importedModules.push(import('ranges'));
+          }
+
+          if (module === 'navkeyboard') {
+            importedModules.push(import('navkeyboard'));
+          }
+        });
+
+        Promise.all(importedModules).then(() => {
+          this.picker = new Litepicker(this._options);
+        });
+      } else {
+        this.picker = new Litepicker(this._options);
+      }
+    });
 
     let args = this.getArgs();
+
     if (args.registerAPI) {
       args.registerAPI(this.picker);
     }

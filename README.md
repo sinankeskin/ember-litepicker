@@ -1,34 +1,27 @@
-ember-litepicker
-==============================================================================
+# ember-litepicker
 
 Ember addon for [Litepicker](https://github.com/wakirin/Litepicker/) date range picker library.
 
+## Compatibility
 
-Compatibility
-------------------------------------------------------------------------------
+- Ember.js v3.16 or above
+- Ember CLI v2.13 or above
+- Node.js v10 or above
 
-* Ember.js v3.16 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
-
-
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-litepicker
 ```
 
-
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 You can change all global configuration settings via `config/environment.js` file.
 
 Please check [Litepicker](https://wakirin.github.io/Litepicker/) site for more configuration details.
 
 ```javascript
-ENV["ember-litepicker"] = {
+ENV['ember-litepicker'] = {
   elementEnd: null,
   parentEl: null,
   firstDay: 1,
@@ -79,8 +72,10 @@ ENV["ember-litepicker"] = {
   buttonText: {
     apply: 'Apply',
     cancel: 'Cancel',
-    previousMonth: '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M7.919 0l2.748 2.667L5.333 8l5.334 5.333L7.919 16 0 8z" fill-rule="nonzero"/></svg>',
-    nextMonth: '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.748 16L0 13.333 5.333 8 0 2.667 2.748 0l7.919 8z" fill-rule="nonzero"/></svg>',
+    previousMonth:
+      '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M7.919 0l2.748 2.667L5.333 8l5.334 5.333L7.919 16 0 8z" fill-rule="nonzero"/></svg>',
+    nextMonth:
+      '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.748 16L0 13.333 5.333 8 0 2.667 2.748 0l7.919 8z" fill-rule="nonzero"/></svg>',
   },
   tooltipText: {
     one: 'day',
@@ -95,26 +90,29 @@ ENV["ember-litepicker"] = {
   onRender: null,
   onChangeMonth: null,
   onChangeYear: null,
+  modules: ['ranges', 'navkeyboard'], // As of v2.1.0 you can dynamically import modules
 };
-
 ```
+
 Example as a component
 
-``` handlebars
+```handlebars
 <Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off" />
 ```
 
 Example as a modifer
 
-``` handlebars
+```handlebars
 <Input {{litepicker singleMode=false startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
 ```
 
-If you would like access to the litepicker instance in order to call some methods directly, for example to hide or show 
+If you would like access to the litepicker instance in order to call some methods directly, for example to hide or show
 programmatically, pass an action to registerAPI
+
 ```handlebars
 <Input {{litepicker registerApi=this.saveApi startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
 ```
+
 ```javascript
 // save the litepicker instance to use later
 @action
@@ -122,20 +120,17 @@ saveApi(litepicker) {
     this.litepicker = litepicker;
 }
 
-// programmatically open the datepicker 
+// programmatically open the datepicker
 @action
 openDatePicker() {
     this.litepicker.show();
 }
 ```
 
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).

@@ -2,11 +2,16 @@
 
 module.exports = {
   name: require('./package').name,
-
-  included(app) {
-    this._super.included.apply(this, arguments);
-
-    app.import('node_modules/litepicker/dist/js/main.nocss.js');
-    app.import('node_modules/litepicker/dist/css/style.css');
+  options: {
+    autoImport: {
+      alias: {
+        litepicker: 'litepicker/dist/js/main',
+        ranges: 'litepicker-module-ranges/dist/index',
+        navkeyboard: 'litepicker-module-navkeyboard/dist/index',
+      },
+    },
+    babel: {
+      plugins: [require.resolve('ember-auto-import/babel-plugin')],
+    },
   },
 };

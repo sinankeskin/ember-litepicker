@@ -54,6 +54,7 @@ module.exports = function (environment) {
       one: 'gün',
       other: 'gün',
     },
+    modules: ['ranges', 'navkeyboard'],
   };
 
   return ENV;
