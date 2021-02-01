@@ -90,9 +90,7 @@ ENV['ember-litepicker'] = {
   onRender: null,
   onChangeMonth: null,
   onChangeYear: null,
-  modules: ['ranges', 'navkeyboard'], // As of v2.1.0 you can dynamically import modules
-  moduleRanges: true,
-  moduleNavKeyboard: true,
+  plugins: ['keyboardnav', 'mobilefriendly', 'ranges'], // As of v2.1.0 you can dynamically import modules, as of v3.0.0 property name changed to plugins
 };
 ```
 

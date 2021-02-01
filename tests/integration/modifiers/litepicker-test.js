@@ -1,9 +1,10 @@
+import { clickable, create } from 'ember-cli-page-object';
 import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+
 import hbs from 'htmlbars-inline-precompile';
-import { create, clickable } from 'ember-cli-page-object';
+import { render } from '@ember/test-helpers';
 import { set } from '@ember/object';
+import { setupRenderingTest } from 'ember-qunit';
 
 let page = create({
   input: { scope: '[data-test-litepicker]' },

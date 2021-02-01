@@ -5,9 +5,10 @@ module.exports = {
   options: {
     autoImport: {
       alias: {
-        litepicker: 'litepicker/dist/js/main',
-        ranges: 'litepicker-module-ranges/dist/index',
-        navkeyboard: 'litepicker-module-navkeyboard/dist/index',
+        litepicker: 'litepicker/dist/litepicker',
+        keyboardnav: 'litepicker/dist/plugins/keyboardnav',
+        mobilefriendly: 'litepicker/dist/plugins/mobilefriendly',
+        ranges: 'litepicker/dist/plugins/ranges',
       },
     },
     babel: {

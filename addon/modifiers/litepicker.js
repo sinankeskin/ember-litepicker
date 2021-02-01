@@ -1,3 +1,4 @@
+/* globals Litepicker */
 import Modifier from 'ember-modifier';
 import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
@@ -261,36 +262,41 @@ export default class LitepickerModifier extends Modifier {
   }
 
   didInstall() {
-    import('litepicker').then((litepicker) => {
-      const Litepicker = litepicker.default;
+    import('litepicker').then(() => {
+      const args = this.getArgs();
+      const plugins = this._config['plugins'];
+      const importedPlugins = [];
 
-      const importedModules = [];
-      const modules = this._config['modules'];
-
-      if (modules) {
-        modules.forEach((module) => {
-          if (module === 'ranges') {
-            importedModules.push(import('ranges'));
+      if (plugins) {
+        plugins.forEach((plugin) => {
+          if (plugin === 'keyboardnav') {
+            importedPlugins.push(import('keyboardnav'));
           }
 
-          if (module === 'navkeyboard') {
-            importedModules.push(import('navkeyboard'));
+          if (plugin === 'mobilefriendly') {
+            importedPlugins.push(import('mobilefriendly'));
+          }
+
+          if (plugin === 'ranges') {
+            importedPlugins.push(import('ranges'));
           }
         });
 
-        Promise.all(importedModules).then(() => {
+        Promise.all(importedPlugins).then(() => {
           this.picker = new Litepicker(this._options);
+
+          if (args.registerAPI) {
+            args.registerAPI(this.picker);
+          }
         });
       } else {
         this.picker = new Litepicker(this._options);
+
+        if (args.registerAPI) {
+          args.registerAPI(this.picker);
+        }
       }
     });
-
-    let args = this.getArgs();
-
-    if (args.registerAPI) {
-      args.registerAPI(this.picker);
-    }
   }
 
   willRemove() {
