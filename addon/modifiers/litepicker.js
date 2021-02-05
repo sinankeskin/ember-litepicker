@@ -263,8 +263,7 @@ export default class LitepickerModifier extends Modifier {
 
   didInstall() {
     import('litepicker').then(() => {
-      const args = this.getArgs();
-      const plugins = this._config['plugins'];
+      const plugins = this._options['plugins'];
       const importedPlugins = [];
 
       if (plugins) {
@@ -280,20 +279,30 @@ export default class LitepickerModifier extends Modifier {
           if (plugin === 'ranges') {
             importedPlugins.push(import('ranges'));
           }
+
+          if (plugin === 'multiselect') {
+            importedPlugins.push(import('multiselect'));
+          }
         });
 
         Promise.all(importedPlugins).then(() => {
           this.picker = new Litepicker(this._options);
 
-          if (args.registerAPI) {
-            args.registerAPI(this.picker);
+          if (
+            this._options.registerAPI &&
+            typeof this._options.registerAPI === 'function'
+          ) {
+            this._options.registerAPI(this.picker);
           }
         });
       } else {
         this.picker = new Litepicker(this._options);
 
-        if (args.registerAPI) {
-          args.registerAPI(this.picker);
+        if (
+          this._options.registerAPI &&
+          typeof this._options.registerAPI === 'function'
+        ) {
+          this._options.registerAPI(this.picker);
         }
       }
     });

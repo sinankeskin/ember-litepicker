@@ -9,6 +9,7 @@ module.exports = {
         keyboardnav: 'litepicker/dist/plugins/keyboardnav',
         mobilefriendly: 'litepicker/dist/plugins/mobilefriendly',
         ranges: 'litepicker/dist/plugins/ranges',
+        multiselect: 'litepicker/dist/plugins/multiselect',
       },
     },
     babel: {
