@@ -5,7 +5,6 @@ module.exports = {
   options: {
     autoImport: {
       alias: {
-        litepicker: 'litepicker/dist/litepicker',
         keyboardnav: 'litepicker/dist/plugins/keyboardnav',
         mobilefriendly: 'litepicker/dist/plugins/mobilefriendly',
         ranges: 'litepicker/dist/plugins/ranges',
@@ -15,5 +14,11 @@ module.exports = {
     babel: {
       plugins: [require.resolve('ember-auto-import/babel-plugin')],
     },
+  },
+
+  included(app) {
+    this._super.included.apply(this, arguments);
+
+    app.import('node_modules/litepicker/dist/litepicker.js');
   },
 };

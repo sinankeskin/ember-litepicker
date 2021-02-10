@@ -1,12 +1,13 @@
 /* globals Litepicker */
 import Modifier from 'ember-modifier';
-import { cached } from '@glimmer/tracking';
+import { tracked, cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 
 export default class LitepickerModifier extends Modifier {
   /**
    * The litepicker instance
    */
+  @tracked
   picker;
 
   @cached
@@ -262,50 +263,50 @@ export default class LitepickerModifier extends Modifier {
   }
 
   didInstall() {
-    import('litepicker').then(() => {
-      const plugins = this._options['plugins'];
+    const plugins = this._options['plugins'];
+
+    if (plugins && Array.isArray(plugins) && plugins.length > 0) {
       const importedPlugins = [];
 
-      if (plugins) {
-        plugins.forEach((plugin) => {
-          if (plugin === 'keyboardnav') {
-            importedPlugins.push(import('keyboardnav'));
-          }
+      plugins.forEach((plugin) => {
+        if (plugin === 'keyboardnav') {
+          importedPlugins.push(import('keyboardnav'));
+        }
 
-          if (plugin === 'mobilefriendly') {
-            importedPlugins.push(import('mobilefriendly'));
-          }
+        if (plugin === 'mobilefriendly') {
+          importedPlugins.push(import('mobilefriendly'));
+        }
 
-          if (plugin === 'ranges') {
-            importedPlugins.push(import('ranges'));
-          }
+        if (plugin === 'ranges') {
+          importedPlugins.push(import('ranges'));
+        }
 
-          if (plugin === 'multiselect') {
-            importedPlugins.push(import('multiselect'));
-          }
-        });
+        if (plugin === 'multiselect') {
+          importedPlugins.push(import('multiselect'));
+        }
+      });
 
+      if (importedPlugins.length > 0) {
         Promise.all(importedPlugins).then(() => {
-          this.picker = new Litepicker(this._options);
-
-          if (
-            this._options.registerAPI &&
-            typeof this._options.registerAPI === 'function'
-          ) {
-            this._options.registerAPI(this.picker);
-          }
+          this._initialize();
         });
       } else {
-        this.picker = new Litepicker(this._options);
-
-        if (
-          this._options.registerAPI &&
-          typeof this._options.registerAPI === 'function'
-        ) {
-          this._options.registerAPI(this.picker);
-        }
+        this._initialize();
       }
-    });
+    } else {
+      this._initialize();
+    }
+  }
+
+  _initialize() {
+    this.picker = new Litepicker(this._options);
+
+    if (
+      this._options.registerAPI &&
+      typeof this._options.registerAPI === 'function'
+    ) {
+      this._options.registerAPI(this.picker);
+    }
   }
 
   willRemove() {

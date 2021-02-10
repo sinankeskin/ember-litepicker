@@ -54,7 +54,6 @@ module.exports = function (environment) {
       one: 'gün',
       other: 'gün',
     },
-    plugins: ['keyboardnav', 'mobilefriendly', 'ranges'],
   };
 
   return ENV;
