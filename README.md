@@ -1,6 +1,6 @@
 # ember-litepicker
 
-Ember addon for [Litepicker](https://github.com/wakirin/Litepicker/) date range picker library.
+Ember addon for [Litepicker](https://litepicker.com/) date range picker library.
 
 ## Compatibility
 
@@ -18,25 +18,23 @@ ember install ember-litepicker
 
 You can change all global configuration settings via `config/environment.js` file.
 
-Please check [Litepicker](https://wakirin.github.io/Litepicker/) site for more configuration details.
+Please check [Litepicker](https://litepicker.com/) site for more configuration details.
 
 ```javascript
 ENV['ember-litepicker'] = {
+  element: null,
   elementEnd: null,
   parentEl: null,
   firstDay: 1,
   format: 'YYYY-MM-DD',
   lang: 'en-US',
+  delimiter: ' - ',
   numberOfMonths: 1,
   numberOfColumns: 1,
   startDate: null,
   endDate: null,
   zIndex: 9999,
 
-  minDate: null,
-  maxDate: null,
-  minDays: null,
-  maxDays: null,
   selectForward: false,
   selectBackward: false,
   splitView: false,
@@ -46,24 +44,22 @@ ENV['ember-litepicker'] = {
   allowRepick: false,
   showWeekNumbers: false,
   showTooltip: true,
-  hotelMode: false,
-  disableWeekends: false,
   scrollToDate: true,
   mobileFriendly: true,
+  resetButton: false,
+  autoRefresh: false,
 
   lockDaysFormat: 'YYYY-MM-DD',
   lockDays: [],
   disallowLockDaysInRange: false,
   lockDaysInclusivity: '[]',
 
-  bookedDaysFormat: 'YYYY-MM-DD',
-  bookedDays: [],
-  disallowBookedDaysInRange: false,
-  bookedDaysInclusivity: '[]',
-  anyBookedDaysAsCheckout: false,
+  highlightedDaysFormat: 'YYYY-MM-DD',
+  highlightedDays: [],
 
   dropdowns: {
     minYear: 1990,
+    // tslint:disable-next-line: object-literal-sort-keys
     maxYear: null,
     months: false,
     years: false,
@@ -76,6 +72,10 @@ ENV['ember-litepicker'] = {
       '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M7.919 0l2.748 2.667L5.333 8l5.334 5.333L7.919 16 0 8z" fill-rule="nonzero"/></svg>',
     nextMonth:
       '<svg width="11" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.748 16L0 13.333 5.333 8 0 2.667 2.748 0l7.919 8z" fill-rule="nonzero"/></svg>',
+    reset: `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+      </svg>`,
   },
   tooltipText: {
     one: 'day',
@@ -83,14 +83,27 @@ ENV['ember-litepicker'] = {
   },
 
   // Events
-  onShow: null,
-  onHide: null,
-  onSelect: null,
-  onError: null,
-  onRender: null,
-  onChangeMonth: null,
-  onChangeYear: null,
-  plugins: ['keyboardnav', 'mobilefriendly', 'ranges'], // As of v2.1.0 you can dynamically import modules, as of v3.0.0 property name changed to plugins
+  onBeforeClick,
+  onBeforeRender,
+  onBeforeShow,
+  onButtonApply,
+  onButtonCancel,
+  onChangeMonth,
+  onChangeYear,
+  onClearSelection,
+  onPreselect,
+  onSelected,
+  onRender,
+  onRenderDay,
+  onRenderFooter,
+  onRenderMonth,
+  onShow,
+  onHide,
+  onTooltip,
+  onErrorRange,
+  onDestroy,
+
+  plugins: ['keyboardnav', 'mobilefriendly', 'ranges', 'multiselect'], // As of v2.1.0 you can dynamically import modules, as of v3.0.0 property name changed to plugins
 };
 ```
 
@@ -117,13 +130,13 @@ programmatically, pass an action to registerAPI
 // save the litepicker instance to use later
 @action
 saveApi(litepicker) {
-    this.litepicker = litepicker;
+  this.litepicker = litepicker;
 }
 
 // programmatically open the datepicker
 @action
 openDatePicker() {
-    this.litepicker.show();
+  this.litepicker.show();
 }
 ```
 

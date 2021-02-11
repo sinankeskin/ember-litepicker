@@ -36,7 +36,7 @@ module('Integration | Modifier | litepicker', function (hooks) {
           singleMode=false
           startDate=this.startDate
           endDate=this.endDate
-          onSelect=this.onDateChanged
+          onSelected=this.onDateChanged
         }}
       />`);
 
