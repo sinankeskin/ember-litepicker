@@ -1,5 +1,7 @@
 # ember-litepicker
 
+![CI](https://github.com/sinankeskin/ember-litepicker/workflows/CI/badge.svg)
+
 Ember addon for [Litepicker](https://litepicker.com/) date range picker library.
 
 ## Compatibility
