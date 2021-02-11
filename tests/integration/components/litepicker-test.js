@@ -7,7 +7,7 @@ import { set } from '@ember/object';
 import { setupRenderingTest } from 'ember-qunit';
 
 let page = create({
-  input: { scope: '[data-test-litepicker]' },
+  input: { scope: 'input' },
   calendar: {
     testContainer: '.container__main',
     days: {
@@ -18,10 +18,10 @@ let page = create({
   },
 });
 
-module('Integration | Modifier | litepicker', function (hooks) {
+module('Integration | Component | litepicker', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it works', async function (assert) {
+  test('it renders', async function (assert) {
     this.startDate = new Date(2019, 11, 23); // month is 0 based
     this.endDate = new Date(2019, 11, 28);
     this.onDateChanged = (startDate, endDate) => {
@@ -29,15 +29,9 @@ module('Integration | Modifier | litepicker', function (hooks) {
       set(this, 'endDate', endDate);
     };
 
-    await render(hbs`
-      <Input data-test-litepicker
-        {{litepicker
-          singleMode=false
-          startDate=this.startDate
-          endDate=this.endDate
-          onSelected=this.onDateChanged
-        }}
-      />`);
+    await render(
+      hbs`<Litepicker @singleMode={{false}} @startDate={{this.startDate}} @endDate={{this.endDate}} @onSelected={{this.onDateChanged}} />`
+    );
 
     assert.equal(
       page.input.value,
