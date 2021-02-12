@@ -6,6 +6,8 @@
 
 Ember addon for [Litepicker](https://litepicker.com/) date range picker library.
 
+![SS](https://github.com/sinankeskin/ember-litepicker/blob/main/ss.png?raw=true)
+
 ## Compatibility
 
 - Ember.js v3.16 or above
