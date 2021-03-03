@@ -12,19 +12,21 @@
 </div>
 <div></div>
 <div>
-  Litepicker as a modifier
-  <Input
-    {{litepicker
-      singleMode=false
-      startDate='23.12.2019'
-      endDate='28.12.2019'
-      plugins=(array 'keyboardnav' 'mobilefriendly' 'ranges' 'multiselect')
-      numberOfMonths=2
-      numberOfColumns=2
-      autocomplete='off'
-      registerAPI=this.registerAPI
-    }}
-  />
+  <label>
+    Litepicker as a modifier
+    <Input
+      {{litepicker
+        singleMode=false
+        startDate='23.12.2019'
+        endDate='28.12.2019'
+        plugins=(array 'keyboardnav' 'mobilefriendly' 'ranges' 'multiselect')
+        numberOfMonths=2
+        numberOfColumns=2
+        autocomplete='off'
+        registerAPI=this.registerAPI
+      }}
+    />
+  </label>
   <button type="button" {{on 'click' this.show}}>
     Open
   </button>
