@@ -14,7 +14,12 @@ export async function calendarSelect(selector, selected) {
   const calendarElement = document.querySelector('.litepicker');
 
   const dayElement = calendarElement.querySelector(
-    `.container__main .container__days .day-item[data-time="${selected.getTime()}"]`
+    `.container__main .container__days .day-item[data-time="${selected.setHours(
+      0,
+      0,
+      0,
+      0
+    )}"]`
   );
 
   if (dayElement) {
