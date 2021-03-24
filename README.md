@@ -119,6 +119,14 @@ Example as a component
 <Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off" />
 ```
 
+```handlebars
+<Litepicker @singleMode={{false}} @startDate="23.12.2019" @endDate="28.12.2019" autocomplete="off">
+  <div>
+    Date Time: {{@dateTime}}
+  </div>
+</Litepicker>
+```
+
 Example as a modifer
 
 ```handlebars

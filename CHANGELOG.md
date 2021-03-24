@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+[3.0.25] - 2021-03-24
+
+- Block syntax added - yields nothing
+
 [3.0.1] - 2021-02-05
 
 - Litepicker version updated to 2.0.3 (https://github.com/wakirin/Litepicker/releases/tag/2.0.3)
