@@ -1,5 +1,16 @@
-<Input
-  class="ember-litepicker-input"
-  ...attributes
-  {{litepicker this.args}}
-/>
+{{#if (has-block)}}
+  <div
+    role="button"
+    class="ember-litepicker-input"
+    ...attributes
+    {{litepicker this.args}}
+  >
+    {{yield}}
+  </div>
+{{else}}
+  <Input
+    class="ember-litepicker-input"
+    ...attributes
+    {{litepicker this.args}}
+  />
+{{/if}}
