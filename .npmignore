@@ -33,6 +33,7 @@
 /*.tgz
 /ss.png
 .gitkeep
+/.github/
 
 # ember-try
 /.node_modules.ember-try/
