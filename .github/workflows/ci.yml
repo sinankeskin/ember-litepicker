@@ -25,9 +25,9 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Lint
-        run: npm run lint
+        run: yarn lint
       - name: Test
-        run: npm run test:ember
+        run: yarn test:ember
 
   test-no-lock:
     name: Floating Dependencies
@@ -46,7 +46,7 @@ jobs:
         with:
           useLockFile: false
       - name: Test
-        run: npm run test:ember
+        run: yarn test:ember
 
   test-try:
     name: Additional Tests
@@ -73,4 +73,4 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Test
-        run: npm run ember try:one ${{ matrix.scenario }}
+        run: yarn ember try:one ${{ matrix.scenario }}
