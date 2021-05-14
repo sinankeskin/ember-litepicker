@@ -19,9 +19,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: '14'
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Lint
@@ -38,9 +38,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: '14'
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
@@ -56,6 +56,7 @@ jobs:
     strategy:
       matrix:
         scenario:
+          - ember-lts-3.24
           - ember-lts-3.20
           - ember-lts-3.16
           - ember-release
@@ -66,9 +67,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: '14'
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
       - name: Test
