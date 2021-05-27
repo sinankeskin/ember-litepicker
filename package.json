@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@ember/render-modifiers": "^1.0.2",
-    "ember-auto-import": "^2.0.0",
+    "ember-auto-import": "^2.0.1",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
     "ember-modifier": "^2.1.1",
@@ -63,7 +63,7 @@
     "ember-page-title": "^6.2.2",
     "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
-    "ember-source": "^3.27.1",
+    "ember-source": "^3.27.2",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^3.4.2",
     "ember-try": "^1.4.0",
@@ -77,7 +77,7 @@
     "prettier": "^2.3.0",
     "qunit": "^2.15.0",
     "qunit-dom": "^1.6.0",
-    "webpack": "^5.37.1"
+    "webpack": "^5.38.0"
   },
   "engines": {
     "node": "10.* || >= 12"
