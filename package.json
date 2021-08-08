@@ -41,7 +41,7 @@
     "ember-modifier": "^2.1.2",
     "litepicker": "^2.0.11",
     "tracked-toolbox": "^1.2.3",
-    "webpack": "^5.48.0"
+    "webpack": "^5.49.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
