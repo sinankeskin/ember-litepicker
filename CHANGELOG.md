@@ -2,6 +2,15 @@
 
 All notable changes will be documented in this file.
 
+[4.2.0] - 2021-09-05
+- ember-cli upgraded to v3.28
+
+Compatibility is now;
+
+* Ember.js v3.20 or above
+* Ember CLI v3.20 or above
+* Node.js v12 or above
+
 [4.0.0] - 2021-05-14
 
 - ember-auto-import upgraded to v2.0
