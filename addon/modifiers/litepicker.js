@@ -214,7 +214,9 @@ export default class LitepickerModifier extends Modifier {
         }
 
         if (plugin === 'mobilefriendly') {
-          importedPlugins.push(import('litepicker/dist/plugins/mobilefriendly'));
+          importedPlugins.push(
+            import('litepicker/dist/plugins/mobilefriendly')
+          );
         }
 
         if (plugin === 'ranges') {
