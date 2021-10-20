@@ -1,7 +1,7 @@
 /* globals Litepicker */
 
 import Modifier from 'ember-modifier';
-import { cached } from 'tracked-toolbox';
+import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
 
