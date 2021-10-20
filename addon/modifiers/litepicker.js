@@ -210,19 +210,21 @@ export default class LitepickerModifier extends Modifier {
 
       plugins.forEach((plugin) => {
         if (plugin === 'keyboardnav') {
-          importedPlugins.push(import('keyboardnav'));
+          importedPlugins.push(import('litepicker/dist/plugins/keyboardnav'));
         }
 
         if (plugin === 'mobilefriendly') {
-          importedPlugins.push(import('mobilefriendly'));
+          importedPlugins.push(
+            import('litepicker/dist/plugins/mobilefriendly')
+          );
         }
 
         if (plugin === 'ranges') {
-          importedPlugins.push(import('ranges'));
+          importedPlugins.push(import('litepicker/dist/plugins/ranges'));
         }
 
         if (plugin === 'multiselect') {
-          importedPlugins.push(import('multiselect'));
+          importedPlugins.push(import('litepicker/dist/plugins/multiselect'));
         }
       });
 

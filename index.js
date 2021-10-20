@@ -5,10 +5,13 @@ module.exports = {
   options: {
     autoImport: {
       alias: {
-        keyboardnav$: 'litepicker/dist/plugins/keyboardnav',
-        mobilefriendly$: 'litepicker/dist/plugins/mobilefriendly',
-        ranges$: 'litepicker/dist/plugins/ranges',
-        multiselect$: 'litepicker/dist/plugins/multiselect',
+        'litepicker/dist/plugins/keyboardnav':
+          'litepicker/dist/plugins/keyboardnav',
+        'litepicker/dist/plugins/mobilefriendly':
+          'litepicker/dist/plugins/mobilefriendly',
+        'litepicker/dist/plugins/ranges': 'litepicker/dist/plugins/ranges',
+        'litepicker/dist/plugins/multiselect':
+          'litepicker/dist/plugins/multiselect',
       },
     },
     babel: {
