@@ -59,8 +59,8 @@ jobs:
           - ember-lts-3.20
           - ember-lts-3.16
           - ember-release
-          - ember-beta
           - ember-classic
+          # - ember-beta - Disabled for now
       fail-fast: false
     steps:
       - name: Checkout code
