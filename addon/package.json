@@ -18,6 +18,9 @@
     "test": "tests"
   },
   "scripts": {
+    "build": "rollup --config",
+    "prepublishOnly": "rollup --config",
+    "start": "rollup --config --watch",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -27,17 +30,42 @@
   },
   "dependencies": {
     "@ember/render-modifiers": "^2.0.0",
-    "ember-auto-import": "^2.2.4",
+    "@embroider/addon-shim": "^1.6.0",
     "ember-cached-decorator-polyfill": "^0.1.4",
-    "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^6.0.0",
     "ember-modifier": "^3.0.0",
     "litepicker": "^2.0.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.9",
+    "@embroider/addon-dev": "^1.6.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "rollup": "^2.71.1"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
   },
   "ember": {
     "edition": "octane"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*",
+    "./test-support": "./dist/test-support/index.js",
+    "./addon-main.js": "./addon-main.js"
+  },
+  "files": [
+    "addon-main.js",
+    "dist"
+  ],
+  "ember-addon": {
+    "main": "addon-main.js",
+    "type": "addon",
+    "version": 2,
+    "app-js": {
+      "./components/litepicker.js": "./dist/_app_/components/litepicker.js",
+      "./modifiers/litepicker.js": "./dist/_app_/modifiers/litepicker.js"
+    }
   }
 }

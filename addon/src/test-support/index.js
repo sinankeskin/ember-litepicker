@@ -1,5 +1,4 @@
 import { click, find } from '@ember/test-helpers';
-
 import { assert } from '@ember/debug';
 
 export async function calendarSelect(selector, selected) {
