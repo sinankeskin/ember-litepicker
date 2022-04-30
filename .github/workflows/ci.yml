@@ -29,6 +29,9 @@ jobs:
       - name: Lint
         run: yarn run lint
         working-directory: addon
+      - name: Prebuild
+        run: yarn run build
+        working-directory: addon
       - name: Run Tests
         run: yarn run test:ember
         working-directory: test-app
@@ -45,6 +48,9 @@ jobs:
           cache: yarn
       - name: Install Dependencies
         run: yarn install --no-lockfile
+      - name: Prebuild
+        run: yarn run build
+        working-directory: addon
       - name: Run Tests
         run: yarn run test:ember
         working-directory: test-app
@@ -76,6 +82,9 @@ jobs:
           cache: yarn
       - name: Install Dependencies
         run: yarn
+      - name: Prebuild
+        run: yarn run build
+        working-directory: addon
       - name: Run Tests
         run: yarn ember try:one ${{ matrix.try-scenario }}
         working-directory: test-app
