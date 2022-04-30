@@ -1,22 +1,9 @@
-import { clickable, create } from 'ember-cli-page-object';
 import { module, test } from 'qunit';
-
 import hbs from 'htmlbars-inline-precompile';
-import { render } from '@ember/test-helpers';
+import { render, find, click } from '@ember/test-helpers';
 import { set } from '@ember/object';
 import { setupRenderingTest } from 'ember-qunit';
-
-let page = create({
-  input: { scope: 'input' },
-  calendar: {
-    testContainer: '.container__main',
-    days: {
-      scope: '.container__days',
-      day10: clickable('.day-item', { at: 9 }),
-      day12: clickable('.day-item', { at: 11 }),
-    },
-  },
-});
+import { calendarSelect } from 'ember-litepicker/test-support';
 
 module('Integration | Component | litepicker', function (hooks) {
   setupRenderingTest(hooks);
@@ -30,22 +17,24 @@ module('Integration | Component | litepicker', function (hooks) {
     };
 
     await render(
-      hbs`<Litepicker @singleMode={{false}} @startDate={{this.startDate}} @endDate={{this.endDate}} @onSelected={{this.onDateChanged}} />`
+      hbs`<Litepicker @singleMode={{false}} @startDate={{this.startDate}} @endDate={{this.endDate}} @onSelected={{this.onDateChanged}} data-test-litepicker />`
     );
 
+    const litepicker = find('[data-test-litepicker]');
+
     assert.equal(
-      page.input.value,
-      '23.12.2019 - 28.12.2019',
+      litepicker.value,
+      '2019-12-23 - 2019-12-28',
       'Input contains the initial range'
     );
 
-    await page.input.click();
-    await page.calendar.days.day10();
-    await page.calendar.days.day12();
+    await click(litepicker);
+    await calendarSelect(litepicker, new Date(2019, 11, 10));
+    await calendarSelect(litepicker, new Date(2019, 11, 12));
 
     assert.equal(
-      page.input.value,
-      '10.12.2019 - 12.12.2019',
+      litepicker.value,
+      '2019-12-10 - 2019-12-12',
       'Input contains the updated range'
     );
 

@@ -1,6 +1,6 @@
 {
   "name": "test-app",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "Ember addon for Litepicker date range picker library.",
   "keywords": [
     "litepicker",
@@ -48,7 +48,6 @@
     "ember-cli": "~3.28.4",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-inject-live-reload": "^2.1.0",
-    "ember-cli-page-object": "^1.17.9",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-disable-prototype-extensions": "^1.1.3",

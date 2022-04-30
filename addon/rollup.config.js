@@ -17,6 +17,7 @@ export default {
     addon.publicEntrypoints([
       'components/**/*.js',
       'modifiers/**/*.js',
+      'test-support/**/*.js',
       'index.js',
     ]),
 
