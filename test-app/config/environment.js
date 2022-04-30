@@ -2,10 +2,10 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'dummy',
+    modulePrefix: 'test-app',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'history',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -46,15 +46,6 @@ module.exports = function (environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
-
-  ENV['ember-litepicker'] = {
-    lang: 'tr-TR',
-    format: 'DD.MM.YYYY',
-    tooltipText: {
-      one: 'gün',
-      other: 'gün',
-    },
-  };
 
   return ENV;
 };

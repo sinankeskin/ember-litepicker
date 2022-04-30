@@ -24,10 +24,15 @@ jobs:
           node-version: '14'
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
-      - name: Lint
+      - name: Lint Addon
         run: yarn lint
+        working-directory: addon
+      - name: Lint Test App
+        run: yarn lint
+        working-directory: test-app
       - name: Test
         run: yarn test:ember
+        working-directory: test-app
 
   test-no-lock:
     name: Floating Dependencies
@@ -47,6 +52,7 @@ jobs:
           useLockFile: false
       - name: Test
         run: yarn test:ember
+        working-directory: test-app
 
   test-try:
     name: Additional Tests
@@ -73,3 +79,4 @@ jobs:
         uses: bahmutov/npm-install@v1
       - name: Test
         run: yarn ember try:one ${{ matrix.scenario }}
+        working-directory: test-app
