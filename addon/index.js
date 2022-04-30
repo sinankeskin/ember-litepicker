@@ -18,10 +18,4 @@ module.exports = {
       plugins: [require.resolve('ember-auto-import/babel-plugin')],
     },
   },
-
-  included(app) {
-    this._super.included.apply(this, arguments);
-
-    app.import('node_modules/litepicker/dist/litepicker.js');
-  },
 };
