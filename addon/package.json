@@ -29,10 +29,10 @@
     "lint:js:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@ember/render-modifiers": "^2.0.0",
+    "@ember/render-modifiers": "^2.0.4",
     "@embroider/addon-shim": "^1.6.0",
     "ember-cached-decorator-polyfill": "^0.1.4",
-    "ember-modifier": "^3.0.0",
+    "ember-modifier": "2.1.2",
     "litepicker": "^2.0.12"
   },
   "devDependencies": {
