@@ -28,7 +28,7 @@ module('Integration | Modifier | litepicker', function (hooks) {
 
     const litepicker = find('[data-test-litepicker]');
 
-    assert.equal(
+    assert.strictEqual(
       litepicker.value,
       '2019-12-23 - 2019-12-28',
       'Input contains the initial range'
@@ -38,13 +38,21 @@ module('Integration | Modifier | litepicker', function (hooks) {
     await calendarSelect(litepicker, new Date(2019, 11, 10));
     await calendarSelect(litepicker, new Date(2019, 11, 12));
 
-    assert.equal(
+    assert.strictEqual(
       litepicker.value,
       '2019-12-10 - 2019-12-12',
       'Input contains the updated range'
     );
 
-    assert.equal(this.startDate.getDate(), 10, 'Saved Start date was updated');
-    assert.equal(this.endDate.getDate(), 12, 'Saved End date was updated');
+    assert.strictEqual(
+      this.startDate.getDate(),
+      10,
+      'Saved Start date was updated'
+    );
+    assert.strictEqual(
+      this.endDate.getDate(),
+      12,
+      'Saved End date was updated'
+    );
   });
 });
