@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@ember/render-modifiers": "^2.0.4",
+    "@ember/test-helpers": "^2.7.0",
     "@embroider/addon-shim": "^1.6.0",
     "ember-cached-decorator-polyfill": "^0.1.4",
     "ember-modifier": "2.1.2",
