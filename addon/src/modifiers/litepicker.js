@@ -1,17 +1,12 @@
 import Modifier from 'ember-modifier';
-import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
-import { tracked } from '@glimmer/tracking';
+import { registerDestructor } from '@ember/destroyable';
 import Litepicker from 'litepicker';
 
 export default class LitepickerModifier extends Modifier {
-  /**
-   * The litepicker instance
-   */
-  @tracked
   picker;
+  element;
 
-  @cached
   get _config() {
     const config =
       getOwner(this).resolveRegistration('config:environment') || {};
@@ -19,11 +14,75 @@ export default class LitepickerModifier extends Modifier {
     return config['ember-litepicker'] || {};
   }
 
-  get _options() {
-    const options = this._defaultOptions();
+  constructor(owner, args) {
+    super(owner, args);
+    registerDestructor(this, this.cleanup);
+  }
 
-    Object.assign(options, this._config, this.getArgs());
+  cleanup = () => {
+    if (this.picker) {
+      this.picker.destroy();
+    }
+  };
 
+  modify(element, positional, named) {
+    const args = this._getDefaults(element, positional, named);
+
+    if (this.picker) {
+      this.picker.setOptions(args);
+    } else {
+      this.element = element;
+      const plugins = args['plugins'];
+
+      if (plugins && Array.isArray(plugins) && plugins.length > 0) {
+        const importedPlugins = [];
+
+        plugins.forEach((plugin) => {
+          if (plugin === 'keyboardnav') {
+            importedPlugins.push(import('litepicker/dist/plugins/keyboardnav'));
+          }
+
+          if (plugin === 'mobilefriendly') {
+            importedPlugins.push(
+              import('litepicker/dist/plugins/mobilefriendly')
+            );
+          }
+
+          if (plugin === 'ranges') {
+            importedPlugins.push(import('litepicker/dist/plugins/ranges'));
+          }
+
+          if (plugin === 'multiselect') {
+            importedPlugins.push(import('litepicker/dist/plugins/multiselect'));
+          }
+        });
+
+        if (importedPlugins.length > 0) {
+          Promise.all(importedPlugins).then(() => {
+            this._initialize(args);
+          });
+        } else {
+          this._initialize(args);
+        }
+      } else {
+        this._initialize(args);
+      }
+    }
+  }
+
+  _getArgs(positional, named) {
+    return Object.keys(named).length ? named : positional[0] || {};
+  }
+
+  _getDefaults(element, positional, named) {
+    return Object.assign(
+      { element },
+      this._config,
+      this._getArgs(positional, named)
+    );
+  }
+
+  _setOptions(options) {
     if (options.setup) {
       delete options.setup;
     }
@@ -180,77 +239,12 @@ export default class LitepickerModifier extends Modifier {
     return options;
   }
 
-  /**
-   * @argument element
-   * @type {HtmlElement} HTML Input Element
-   */
-  _defaultOptions() {
-    return {
-      element: this.element,
-    };
-  }
+  _initialize(args) {
+    const options = this._setOptions(args);
+    this.picker = new Litepicker(options);
 
-  getArgs() {
-    // this is done to allow the component version to use the modifier
-    return Object.keys(this.args.named).length
-      ? this.args.named
-      : this.args.positional[0] || {};
-  }
-
-  didUpdateArguments() {
-    this.picker.setOptions(this._options);
-  }
-
-  didInstall() {
-    const plugins = this._options['plugins'];
-
-    if (plugins && Array.isArray(plugins) && plugins.length > 0) {
-      const importedPlugins = [];
-
-      plugins.forEach((plugin) => {
-        if (plugin === 'keyboardnav') {
-          importedPlugins.push(import('litepicker/dist/plugins/keyboardnav'));
-        }
-
-        if (plugin === 'mobilefriendly') {
-          importedPlugins.push(
-            import('litepicker/dist/plugins/mobilefriendly')
-          );
-        }
-
-        if (plugin === 'ranges') {
-          importedPlugins.push(import('litepicker/dist/plugins/ranges'));
-        }
-
-        if (plugin === 'multiselect') {
-          importedPlugins.push(import('litepicker/dist/plugins/multiselect'));
-        }
-      });
-
-      if (importedPlugins.length > 0) {
-        Promise.all(importedPlugins).then(() => {
-          this._initialize();
-        });
-      } else {
-        this._initialize();
-      }
-    } else {
-      this._initialize();
+    if (options.registerAPI && typeof options.registerAPI === 'function') {
+      options.registerAPI(this.picker);
     }
-  }
-
-  _initialize() {
-    this.picker = new Litepicker(this._options);
-
-    if (
-      this._options.registerAPI &&
-      typeof this._options.registerAPI === 'function'
-    ) {
-      this._options.registerAPI(this.picker);
-    }
-  }
-
-  willRemove() {
-    this.picker.destroy();
   }
 }

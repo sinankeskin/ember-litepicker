@@ -17,6 +17,7 @@ module('Integration | Modifier | litepicker', function (hooks) {
     };
 
     await render(hbs`
+      {{!-- template-lint-disable require-input-label --}}
       <Input data-test-litepicker
         {{litepicker
           singleMode=false

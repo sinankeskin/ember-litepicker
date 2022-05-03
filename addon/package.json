@@ -26,17 +26,19 @@
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
-    "lint:js:fix": "eslint . --fix"
+    "lint:js:fix": "eslint . --fix",
+    "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@ember/render-modifiers": "^2.0.4",
     "@ember/test-helpers": "^2.7.0",
     "@embroider/addon-shim": "^1.6.0",
-    "ember-cached-decorator-polyfill": "^0.1.4",
-    "ember-modifier": "2.1.2",
+    "ember-modifier": "3.2.7",
     "litepicker": "^2.0.12"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
     "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-proposal-decorators": "^7.17.9",

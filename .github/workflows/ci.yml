@@ -28,13 +28,8 @@ jobs:
         run: yarn
       - name: Lint
         run: yarn run lint
-        working-directory: addon
-      - name: Prebuild
-        run: yarn run build
-        working-directory: addon
       - name: Run Tests
-        run: yarn run test:ember
-        working-directory: test-app
+        run: yarn run test
 
   floating:
     name: 'Floating Dependencies'
@@ -48,12 +43,8 @@ jobs:
           cache: yarn
       - name: Install Dependencies
         run: yarn install --no-lockfile
-      - name: Prebuild
-        run: yarn run build
-        working-directory: addon
       - name: Run Tests
-        run: yarn run test:ember
-        working-directory: test-app
+        run: yarn run test
 
   try-scenarios:
     name: ${{ matrix.try-scenario }}
@@ -64,8 +55,8 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-          - ember-lts-3.20
-          - ember-lts-3.16
+          - ember-lts-3.24
+          - ember-lts-3.28
           - ember-release
           - ember-beta
           - ember-canary
@@ -82,9 +73,6 @@ jobs:
           cache: yarn
       - name: Install Dependencies
         run: yarn
-      - name: Prebuild
-        run: yarn run build
-        working-directory: addon
       - name: Run Tests
         run: yarn ember try:one ${{ matrix.try-scenario }}
         working-directory: test-app
