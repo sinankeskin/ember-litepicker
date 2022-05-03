@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+[5.0.0] - 2022-05-03
+- converted to a V2 format addon
+- Breaking: Updated to ember-modifiers 3.3.x. This causes modifiers to be called lazily and could have an impact on usage. see [ember-modifier migration](https://github.com/ember-modifier/ember-modifier/blob/master/MIGRATIONS.md#40)
+
 [4.2.0] - 2021-09-05
 - ember-cli upgraded to v3.28
 
