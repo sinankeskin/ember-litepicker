@@ -1,9 +1,8 @@
-/* globals Litepicker */
-
 import Modifier from 'ember-modifier';
 import { cached } from '@glimmer/tracking';
 import { getOwner } from '@ember/application';
 import { tracked } from '@glimmer/tracking';
+import Litepicker from 'litepicker';
 
 export default class LitepickerModifier extends Modifier {
   /**
