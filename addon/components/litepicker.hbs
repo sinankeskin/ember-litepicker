@@ -1,15 +1,17 @@
 {{#if (has-block)}}
+  {{yield to='before'}}
   <div
-    role="button"
-    class="ember-litepicker-input"
+    role='button'
+    class='ember-litepicker-input'
     ...attributes
     {{litepicker this.args}}
   >
-    {{yield}}
+    {{yield to='default'}}
   </div>
+  {{yield to='after'}}
 {{else}}
   <Input
-    class="ember-litepicker-input"
+    class='ember-litepicker-input'
     ...attributes
     {{litepicker this.args}}
   />
