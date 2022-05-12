@@ -1,11 +1,6 @@
-<div class='ember-litepicker'>
+<div class='ember-litepicker' ...attributes>
   {{yield to='before'}}
-  <div
-    role='button'
-    class='ember-litepicker-input'
-    ...attributes
-    {{litepicker this.args}}
-  >
+  <div role='button' class='ember-litepicker-input' {{litepicker this.args}}>
     {{yield to='default'}}
   </div>
   {{yield to='after'}}
