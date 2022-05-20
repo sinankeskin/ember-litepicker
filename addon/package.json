@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@ember/render-modifiers": "^2.0.4",
-    "@ember/test-helpers": "^2.7.0",
+    "@ember/test-helpers": "^2.8.1",
     "@embroider/addon-shim": "^1.6.0",
     "ember-modifier": "3.2.7",
     "litepicker": "^2.0.12"
