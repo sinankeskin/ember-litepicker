@@ -2,19 +2,28 @@ import { click, find } from '@ember/test-helpers';
 
 import { assert } from '@ember/debug';
 
-export async function calendarSelect(selector, selected) {
-  assert('`calendarSelect` expect a Date object as second argument', selected);
+export async function calendarSelect(
+  triggerSelector,
+  selectedDate,
+  containerSelector = document
+) {
+  assert(
+    '`calendarSelect` expect a Date object as second argument',
+    selectedDate
+  );
 
-  const target = find(selector);
+  const trigger = find(triggerSelector);
 
-  if (target) {
-    await click(target);
+  if (trigger) {
+    await click(trigger);
   }
 
-  const calendarElement = document.querySelector('.litepicker');
+  const container = find(containerSelector);
+
+  const calendarElement = container.querySelector('.litepicker');
 
   const dayElement = calendarElement.querySelector(
-    `.container__main .container__days .day-item[data-time="${selected.setHours(
+    `.container__main .container__days .day-item[data-time="${selectedDate.setHours(
       0,
       0,
       0,
