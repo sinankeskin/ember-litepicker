@@ -135,7 +135,7 @@ If you would like access to the litepicker instance in order to call some method
 programmatically, pass an action to registerAPI
 
 ```handlebars
-<Input {{litepicker registerApi=this.saveApi startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
+<Input {{litepicker registerAPI=this.saveApi startDate="23.12.2019" endDate="28.12.2019" autocomplete="off"}} />
 ```
 
 ```javascript
