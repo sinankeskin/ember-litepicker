@@ -9074,10 +9074,10 @@ rollup-plugin-delete@^2.0.0:
   dependencies:
     del "^5.1.0"
 
-rollup@^3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.2.5.tgz#9452168ac083218c8212bf53d2448bdc6b8b0de7"
-  integrity sha512-/Ha7HhVVofduy+RKWOQJrxe4Qb3xyZo+chcpYiD8SoQa4AG7llhupUtyfKSSrdBM2mWJjhM8wZwmbY23NmlIYw==
+rollup@^3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.10.0.tgz#6eb19196d8b3b375ca651cb78261faac48e24cd6"
+  integrity sha512-JmRYz44NjC1MjVF2VKxc0M1a97vn+cDxeqWmnwyAF4FvpjK8YFdHpaqvQB+3IxCvX05vJxKZkoMDU8TShhmJVA==
   optionalDependencies:
     fsevents "~2.3.2"
 
