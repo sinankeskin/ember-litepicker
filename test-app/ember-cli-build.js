@@ -7,12 +7,5 @@ module.exports = function (defaults) {
     // Add options here
   });
 
-  const { maybeEmbroider } = require('@embroider/test-setup');
-  return maybeEmbroider(app, {
-    skipBabel: [
-      {
-        package: 'qunit',
-      },
-    ],
-  });
+  return app.toTree();
 };
