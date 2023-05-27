@@ -1,21 +1,12 @@
-{{#if (has-block)}}
+<div class='ember-litepicker' ...attributes>
   {{yield to='before'}}
-  <div
-    role='button'
-    class='ember-litepicker ember-litepicker-input'
-    ...attributes
-    {{litepicker this.args}}
-  >
+  {{#if (has-block)}}
+    <div role='button' class='ember-litepicker-input' {{litepicker this.args}}>
+      {{yield to='default'}}
+    </div>
+  {{else}}
+    <Input class='ember-litepicker-input' {{litepicker this.args}} />
     {{yield to='default'}}
-  </div>
+  {{/if}}
   {{yield to='after'}}
-{{else}}
-  {{yield to='before'}}
-  <Input
-    class='ember-litepicker ember-litepicker-input'
-    ...attributes
-    {{litepicker this.args}}
-  />
-  {{yield to='default'}}
-  {{yield to='after'}}
-{{/if}}
+</div>
