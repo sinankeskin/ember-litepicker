@@ -27,7 +27,7 @@
     "prepare": "yarn build"
   },
   "dependencies": {
-    "@ember/render-modifiers": "^2.0.5",
+    "@ember/render-modifiers": "^2.1.0",
     "@ember/test-helpers": "^2.9.3",
     "@embroider/addon-shim": "^1.8.5",
     "ember-modifier": "4.1.0",
